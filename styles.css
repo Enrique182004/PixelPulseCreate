@@ -55,10 +55,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(43, 165, 178, 0.3);
 }
 
 html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -67,6 +70,7 @@ body {
     color: var(--off-white);
     line-height: 1.6;
     overflow-x: hidden;
+    touch-action: pan-y;
 }
 
 .container {
@@ -153,6 +157,11 @@ body {
     transition: color var(--transition-fast);
     text-transform: uppercase;
     letter-spacing: 1px;
+    padding: var(--spacing-xs);
+    display: inline-block;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
 }
 
 .nav-links a:hover {
@@ -303,6 +312,10 @@ body {
     animation: fadeInUp 0.8s ease 1s backwards;
     position: relative;
     overflow: hidden;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .cta-button::before {
@@ -511,17 +524,21 @@ body {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
 }
 
 .service-card {
-    background: var(--darker-bg);
+    background: var(--accent-color);
     border: 1px solid rgba(43, 165, 178, 0.3);
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     transition: all var(--transition-normal);
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .service-card:hover {
@@ -531,7 +548,7 @@ body {
 }
 
 .service-image {
-    height: 200px;
+    height: 250px;
     background: linear-gradient(135deg, var(--light-bg), var(--primary-color));
     display: flex;
     align-items: center;
@@ -556,8 +573,8 @@ body {
 }
 
 .image-placeholder {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     color: var(--accent-color);
 }
 
@@ -570,19 +587,22 @@ body {
     padding: var(--spacing-md);
     background: var(--accent-color);
     color: var(--dark-bg);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-content h3 {
     font-family: var(--font-display);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
     color: var(--dark-bg);
 }
 
 .service-content p {
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--darker-bg);
 }
 
@@ -739,6 +759,10 @@ body {
     border-radius: 4px;
     transition: all var(--transition-fast);
     font-size: 0.9rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .social-link:hover {
@@ -845,6 +869,10 @@ body {
         grid-template-columns: 1fr;
     }
     
+    .about-visual {
+        height: 300px;
+    }
+    
     .contact-content {
         grid-template-columns: 1fr;
     }
@@ -852,19 +880,52 @@ body {
     .contact-visual {
         display: none;
     }
+    
+    .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .nav-content {
+        flex-wrap: wrap;
+    }
+    
     .nav-links {
         gap: var(--spacing-sm);
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        padding-top: var(--spacing-xs);
     }
     
     .nav-links a {
         font-size: 0.8rem;
+        padding: var(--spacing-xs);
+    }
+    
+    .logo-text {
+        font-size: 1rem;
+    }
+    
+    .logo-symbol {
+        font-size: 1.5rem;
+    }
+    
+    .hero {
+        padding-top: 120px;
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
     }
     
     .section-title {
@@ -875,26 +936,155 @@ body {
         grid-template-columns: 1fr;
     }
     
+    .service-image {
+        height: 200px;
+    }
+    
+    .image-placeholder {
+        width: 80px;
+        height: 80px;
+    }
+    
     .features-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .cta-banner h3 {
+        font-size: 1.5rem;
+    }
+    
+    .contact-item {
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .social-links {
+        flex-wrap: wrap;
     }
 }
 
 @media (max-width: 480px) {
+    .logo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+    }
+    
     .logo-text {
-        font-size: 0.9rem;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+    }
+    
+    .logo-symbol {
+        font-size: 1.2rem;
     }
     
     .nav-links {
-        flex-direction: column;
         gap: var(--spacing-xs);
+    }
+    
+    .nav-links a {
+        font-size: 0.7rem;
+        padding: 4px 8px;
+    }
+    
+    .nav-cta {
+        padding: 4px 10px;
+        font-size: 0.7rem;
     }
     
     .hero-title {
         font-size: 2rem;
+        margin-bottom: var(--spacing-sm);
     }
     
     .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .cta-button {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .about-description {
+        font-size: 0.95rem;
+    }
+    
+    .service-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .service-content p {
+        font-size: 0.85rem;
+    }
+    
+    .feature-box h3 {
+        font-size: 1.2rem;
+    }
+    
+    .feature-box p {
+        font-size: 0.9rem;
+    }
+    
+    .cta-banner h3 {
+        font-size: 1.2rem;
+    }
+    
+    .contact-subtitle {
         font-size: 1rem;
+    }
+    
+    .contact-item p {
+        font-size: 0.95rem;
+        word-break: break-word;
+    }
+    
+    .social-link {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    
+    /* Reduce spacing on mobile */
+    .hero,
+    .about,
+    .services,
+    .why-us,
+    .contact {
+        padding: var(--spacing-md) 0;
+    }
+    
+    .section-title.centered {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .services-grid,
+    .features-grid {
+        gap: var(--spacing-sm);
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+    .logo-text {
+        font-size: 0.65rem;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+    }
+    
+    .container {
+        padding: 0 12px;
     }
 }

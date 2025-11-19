@@ -22,11 +22,11 @@ window.addEventListener('scroll', () => {
     if (currentScroll <= 0) {
         navbar.style.boxShadow = 'none';
     } else {
-        navbar.style.boxShadow = '0 4px 12px rgba(0, 255, 65, 0.1)';
+        navbar.style.boxShadow = '0 4px 12px rgba(43, 165, 178, 0.1)';
     }
     
     lastScroll = currentScroll;
-});
+}, { passive: true });
 
 // Intersection Observer for fade-in animations
 const observerOptions = {
@@ -59,16 +59,18 @@ document.querySelectorAll('.feature-box').forEach((box, index) => {
     observer.observe(box);
 });
 
-// Parallax effect for hero graphic elements
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const graphics = document.querySelectorAll('.graphic-element');
-    
-    graphics.forEach((graphic, index) => {
-        const speed = 0.5 + (index * 0.2);
-        graphic.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
-    });
-});
+// Parallax effect for hero graphic elements (desktop only)
+if (window.innerWidth > 768) {
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const graphics = document.querySelectorAll('.graphic-element');
+        
+        graphics.forEach((graphic, index) => {
+            const speed = 0.5 + (index * 0.2);
+            graphic.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
+        });
+    }, { passive: true });
+}
 
 // Add hover effect to service cards
 document.querySelectorAll('.service-card').forEach(card => {
@@ -122,4 +124,4 @@ function validateEmail(email) {
 // Console message for developers
 console.log('%cPixelPulseCreate', 'font-size: 24px; font-weight: bold; color: #2ba5b2;');
 console.log('%cMake technology work for you', 'font-size: 14px; color: #9cd2d3;');
-console.log('%cInterested in working with us? Contact us at hello@pixelpulsecreate.com', 'font-size: 12px; color: #f5f5f5;');
+console.log('%cInterested in working with us? Contact us at info@pixelpulsecreate.com', 'font-size: 12px; color: #f5f5f5;');
