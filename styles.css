@@ -116,6 +116,17 @@ body {
     gap: var(--spacing-xs);
 }
 
+.logo-image {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    transition: transform var(--transition-fast);
+}
+
+.logo-image:hover {
+    transform: scale(1.05);
+}
+
 .logo-symbol {
     font-size: 2rem;
     color: var(--primary-color);
@@ -908,6 +919,10 @@ body {
         padding: var(--spacing-xs);
     }
     
+    .logo-image {
+        height: 40px;
+    }
+    
     .logo-text {
         font-size: 1rem;
     }
@@ -965,9 +980,13 @@ body {
 
 @media (max-width: 480px) {
     .logo {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-xs);
+    }
+    
+    .logo-image {
+        height: 35px;
     }
     
     .logo-text {
@@ -1072,6 +1091,10 @@ body {
 
 /* Extra small devices */
 @media (max-width: 360px) {
+    .logo-image {
+        height: 30px;
+    }
+    
     .logo-text {
         font-size: 0.65rem;
     }
